@@ -13,7 +13,7 @@ Checkout this repo, install dependencies, then start the process with the follow
 > git clone git@github.com:lukkasz/ReactReduxExpressBoilerplate.git
 
 ##### Clone with HTTPS
-> git clone https://github.com/lukkasz/ReactReduxExpressBoilerplat.git
+> https://github.com/lukkasz/ReactReduxExpressBoilerplate.git
 
 > cd ReactReduxExpressBoilerplate
 > npm install
