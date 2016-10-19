@@ -1,14 +1,14 @@
 {
-  "name": "redux-simple-starter",
+  "name": "react-redux-express-boilerplate",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
-  "main": "index.js",
-  "repository": "",
+  "description": "React, Redux, Express boilerplate with babel support",
+  "main": "app.jsx",
+  "repository": "git@github.com:lukkasz/ReactReduxExpressBoilerplate.git",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "node ./node_modules/webpack/bin/webpack.js && node server.js"
   },
-  "author": "",
+  "author": "lukkasz",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.2.1",
