@@ -14,7 +14,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   output: {
     path: path.resolve(__dirname, "public/assets/"),
@@ -23,11 +24,9 @@ module.exports = {
   },
   module: {
     loaders: [{
-      loader: 'babel-loader',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
-      },
       test: /\.jsx?$/,
+      loaders: ['react-hot','babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-1'],
+      include: path.join(__dirname, 'app'),
       exclude: /node_modules/
     },
     { 
@@ -49,9 +48,5 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx']
   },
-  devtool: 'cheap-module-eval-source-map',
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './public'
-  }
+  devtool: 'cheap-module-eval-source-map'
 };

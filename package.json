@@ -5,7 +5,7 @@
   "main": "app.jsx",
   "repository": "git@github.com:lukkasz/ReactReduxExpressBoilerplate.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node devServer",
     "build": "node ./node_modules/webpack/bin/webpack.js && node server.js"
   },
   "author": "lukkasz",
@@ -20,6 +20,7 @@
     "file-loader": "^0.9.0",
     "jquery": "^2.2.1",
     "node-sass": "^3.4.2",
+    "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.1.2",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
