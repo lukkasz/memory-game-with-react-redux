@@ -1,13 +1,17 @@
-import * as redux from 'redux';
+import { 
+	combineReducers, 
+	createStore, 
+	compose 
+} from 'redux';
 
-export const configure = (initailState = {}) => {
-  const reducer = redux.combineReducers({
+export default function configure(initailState = {}) {
+
+  const reducer = combineReducers({
     state: (state = {}) => state
   });
   
-  
   // create store and add support for react dev tools in Chrome
-  const store = redux.createStore(reducer, initailState, redux.compose(
+  const store = createStore(reducer, initailState, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
   

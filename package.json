@@ -1,7 +1,7 @@
 {
   "name": "react-redux-express-boilerplate",
   "version": "1.0.0",
-  "description": "React, Redux, Express boilerplate with babel support",
+  "description": "React, Redux, Express boilerplate with Babel support",
   "main": "app.jsx",
   "repository": "git@github.com:lukkasz/ReactReduxExpressBoilerplate.git",
   "scripts": {
