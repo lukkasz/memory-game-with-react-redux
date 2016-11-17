@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
-    './app/app.jsx'
+    './app/index.jsx'
   ],
   externals: {
     jquery: 'jQuery',
@@ -37,11 +37,6 @@ module.exports = {
   },
   resolve: {
     root: path.resolve(__dirname),
-    modulesDirectories:[
-      'node_modules', 
-      './app/components'
-    ],
-
     alias: {
       app: 'app',
       applicationStyles: 'app/style/style.scss',
