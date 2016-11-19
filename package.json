@@ -6,7 +6,7 @@
   "repository": "git@github.com:lukkasz/ReactReduxExpressBoilerplate.git",
   "scripts": {
     "test": "karma start",
-    "start": "node devServer",
+    "start": "node ./devServer --host $IP --port $PORT",
     "build": "node ./node_modules/webpack/bin/webpack.js && node server.js"
   },
   "author": "lukkasz",
@@ -28,6 +28,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
+    "lodash": "^4.17.2",
     "mocha": "^3.0.2",
     "node-sass": "^3.4.2",
     "phantomjs": "^2.1.7",
@@ -37,12 +38,13 @@
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
+    "uuid": "^3.0.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.2",
     "express": "^4.13.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

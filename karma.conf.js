@@ -3,7 +3,7 @@ var webpackConfig = require('./webpack.config.js');
 module.exports = function (config) {
   
   config.set({
-    browsers: ['Chrome'],  // For C9 replace 'Chrome' with 'PhantomJS'
+    browsers: ['PhantomJS'],  // For C9 replace 'Chrome' with 'PhantomJS'
     hostname: process.env.IP || 'localhost', // Specific for C9
     port: process.env.PORT || 1338,   // Specific for C9
     singleRun: true,

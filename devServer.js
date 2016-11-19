@@ -3,8 +3,9 @@ const WebpackDevServer = require('webpack-dev-server');
 
 var config = require('./webpack.config');
 
+
 config.entry.unshift('webpack/hot/only-dev-server');
-config.entry.unshift('webpack-dev-server/client?http://localhost:8080');
+config.entry.unshift('webpack-dev-server/client?https://0.0.0.0:8080');
 
 new WebpackDevServer(webpack(config), {
 
@@ -12,7 +13,7 @@ new WebpackDevServer(webpack(config), {
 	contentBase: './public',
 	historyApiFallback: true
 
-}).listen(8080, 'localhost', function(err, result) {
+}).listen(8080, function(err, result) {
 	
 	if (err) {
 		console.log(err);

@@ -18,8 +18,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   output: {
-    path: path.resolve(__dirname, "public/assets/"),
-    publicPath: '/assets/',
+    path: path.resolve(__dirname, "public/assets/js/"),
+    publicPath: '/assets/js/',
     filename: 'bundle.js'
   },
   module: {
