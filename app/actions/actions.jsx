@@ -1,12 +1,21 @@
+import * as types from './actionTypes';
+
 export var startGame = () => {
   return {
-    type: 'START_GAME'
+    type: types.START_GAME
   }
 }
 
-export var selectTile = (id) => {
+export var showTile = (id) => {
   return {
-    type: 'SELECT_TILE',
+    type: types.SHOW_TILE,
     id
+  }
+}
+
+export var checkIfMatch = (selectedTiles) => {
+  return {
+    type: types.CHECK_IF_MATCH,
+    selectedTiles
   }
 }

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import expect from 'expect';
 import TestUtils from 'react-addons-test-utils';
 
-import Gameboard from 'app/components/Gameboard';
+import MemoryBoard from 'app/components/MemoryBoard';
 
-describe('Gameboard', ()=>{
+describe('MemoryBoard', ()=>{
   it('should exist', () => {
-    expect(Gameboard).toExist();
+    expect(MemoryBoard).toExist();
   })
 })

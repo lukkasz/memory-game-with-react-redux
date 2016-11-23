@@ -5,7 +5,12 @@ import { Provider } from 'react-redux';
 import App from 'app/components/App';
 import configureStore from 'app/store/configureStore'; 
 
+import * as actions from 'app/actions/actions';
+
 const store = configureStore();
+
+
+store.dispatch(actions.startGame());
 
 //Load bootstrap css
 require('style!css!bootstrap/dist/css/bootstrap.min.css');

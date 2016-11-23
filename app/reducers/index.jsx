@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import * as memory from './memoryReducers';
+import {memoryReducer} from './memoryReducers';
 
 
 const rootReducer = combineReducers({
-     memory: memory
+     memory: memoryReducer
 });
 
 export default rootReducer;

@@ -5,7 +5,7 @@ import * as types from 'app/actions/actionTypes';
 
 describe('Actions', () => {
   
-  it('should generate start game action', () => {
+  it('should generate startGame action', () => {
     
     let action = {
       type: types.START_GAME
@@ -17,16 +17,38 @@ describe('Actions', () => {
     
   });
   
-  it('should generate select tile action', () => {
+  it('should generate showTile action', () => {
     
     let action = {
-      type: types.SELECT_TILE,
+      type: types.SHOW_TILE,
       id: '123'
     };
     
-    let res = actions.selectTile(action.id);
+    let res = actions.showTile(action.id);
     
     expect(res).toEqual(action);
     
+  });
+  
+  it('should generate checkIfMatch action', () => {
+    let action = {
+      type: types.CHECK_IF_MATCH,
+      selectedTiles: [
+        {
+          id: 'abc123',
+          key: 1,
+        },
+        {
+          id:'abc124',
+          key: 1
+        }
+      ]
+    }
+    
+    let res = actions.checkIfMatch(action.selectedTiles);
+    
+    expect(res).toEqual(action);
   })
+  
+  
 })

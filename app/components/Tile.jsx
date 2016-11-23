@@ -1,48 +1,43 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux'
 
-const Tile = (props) => {
-  var {id, src, front, selected} = props.tile;
+import * as actions from 'app/actions/actions';
+
+class Tile extends Component {
+  constructor(){
+    super();
+    this.handleClickTile = this.handleClickTile.bind(this);
+  }  
   
-  const handleClick = (e) => {
+  handleClickTile(e) {
     e.preventDefault();
-    if (props.onClickTile) {
-      props.onClickTile(id);  
-    }
+    let {tile, showTile} = this.props; 
+    showTile(tile.id);
+    
   }
-  return (
-    <div className="col-xs-6 col-md-3" onClick={!selected ? handleClick : null }>
+  
+  render(){
+    var {tile, disableClickOnTiles} = this.props;
+   // console.log("Prosp", this.props);
+    return (
+    <div className="col-xs-6 col-md-3" >
       <a href="#" className="thumbnail">
-        <img className="img-responsive" src={props.tile.src} />
+        <img className="img-responsive" src={tile.src} onClick={ disableClickOnTiles ? null :  this.handleClickTile}/>
       </a>
     </div>  
   )
+  }
+  
+  
 }
 
-// export default class Tile extends Component {
-//   constructor() {
-//     super();
-//     this.handleClick = this.handleClick.bind(this);
-//   }
-  
-//   handleClick(e) {
-//     e.preventDefault();
-//     if (this.props.onClickTile) {
-//       this.props.onClickTile(this.props.tile.id);  
-//     }
-    
-//   }
-  
-//   render() {
-//     var {src, front} = this.props.tile;
-//     //console.log("length:",this.state.selectedCards.length)
-//     return (
-//       <div className="col-xs-6 col-md-3" onClick={src !== front  ? this.handleClick : null }>
-//         <a href="#" className="thumbnail">
-//           <img className="img-responsive" src={src} />
-//         </a>
-//       </div>  
-//   )
-//   }
-// }
 
-export default Tile;
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    showTile: actions.showTile
+  }, dispatch)
+}
+
+
+export default connect(null,mapDispatchToProps)(Tile);
