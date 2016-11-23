@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 
 import memoryAPI from 'app/api/memoryAPI';
 import Tile from 'app/components/Tile';
 
 export default class Gameboard extends Component {
+  
+    selectedTiles = []
+  //newTilesArr = []
   
   constructor(props) {
     super(props);
@@ -11,33 +15,44 @@ export default class Gameboard extends Component {
     this.handleClickTile = this.handleClickTile.bind(this);
     this.state = {
       cards: memoryAPI.setup() || [],
-      selectedCard: undefined
+      selectedCards: []
     }
   }
   
   
-  // componentWillMount() {
-  //   this.setState({
-  //     cards: memoryAPI.setup() || []
-  //   })
-  // }
+  componentDidUpdate() {
+    if(this.state.selectedCards.length === 2) {
+      setTimeout(()=>{
+        console.log("Component didi update:",this.state);
+      }, 2000);
+    }
+  }
   
   handleClickTile (id) {
     console.log('clicked!', id);
-    var newCards = this.state.cards.map((card)=>{
+    
+    //this.newTilesArr = this.newTilesArr.length ? this.newTilesArr : this.state.cards.slice();
+    // loopthrou array and find ID
+   
+    var newTilesArr = this.state.cards.map((card)=>{
       if (card.id === id) {
-        card.src = card.front;
-      }
-      return card;
+        card.src = card.img;
+        card.selected = true;
+      } 
+      return card;  
     });
     
-    
-    console.log("cards: ", newCards)
-    // console.log("State cards:", this.state.cards)
-    
-    this.setState({
-      cards: newCards
+    var selectedCard = this.state.cards.filter((card) => {
+      return card.id === id;
     })
+    
+
+    this.setState({
+      cards: newTilesArr,
+      selectedCards: [...this.state.selectedCards, ...selectedCard]
+    })
+    
+    console.log("Selected: " , this.state.selectedCards);
     
   }
   
@@ -48,14 +63,14 @@ export default class Gameboard extends Component {
     } else {
       return cards.map((card)=>{
         return (
-          <Tile tile={card} key={card.id} onClickTile={this.handleClickTile}/>
+          <Tile tile={card} key={card.id} onClickTile={this.state.selectedCards.length < 2 ? this.handleClickTile : null }/>
         )
       })
     }
   }
   
   render() {
-    console.log("iamges:",memoryAPI.setup())
+    console.log("duljina", this.state.selectedCards)
     return (
       <div className="container gameboard">
         <div className="row">

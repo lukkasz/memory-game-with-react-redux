@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux';
+import * as memory from './memoryReducers';
+
 
 const rootReducer = combineReducers({
-     state: (state = {}) => state
+     memory: memory
 });
 
 export default rootReducer;

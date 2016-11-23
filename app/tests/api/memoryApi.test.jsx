@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import expect from 'expect';
 import TestUtils from 'react-addons-test-utils';
 
-import * as memoryAPI from 'app/api/memoryAPI';
+import memoryAPI from 'app/api/memoryAPI';
 
 describe('memoryAPI', ()=>{
   it('should exist', () => {
