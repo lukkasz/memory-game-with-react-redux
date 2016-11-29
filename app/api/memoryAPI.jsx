@@ -8,8 +8,10 @@ function createImagesArray() {
     for(let i=1; i < 9; i++) {
       let img = {
         key: i,
+        id: uuid(),
         img: `assets/img/${i}.jpg`,
         deck: 'assets/img/deck.jpg',
+        src: 'assets/img/deck.jpg',
         selected: false,
         matched: false 
       }
@@ -19,30 +21,30 @@ function createImagesArray() {
     return _.concat(images, images);
 }
 
-function createTilesWithId(imgArray) {
-  let tiles = imgArray.map((img)=>{
-    return {
-      ...img,
-      src: img.deck,
-      id: uuid()
-    }
-  });
+function checkTiles(tile1, tile2) {
+
+  if(tile1.key === tile2.key) {
+    // return tile1 postavljenim match attributom
+    return true;
+  } else {
+    return false;
+  }
   
-  return tiles;
 }
 
 function setup() {
     
     let imagesArray = createImagesArray();
     
-    let tiles = createTilesWithId(imagesArray);
+    //let tiles = createTilesWithId(imagesArray);
     
-    return _.shuffle(tiles);
+    return _.shuffle(imagesArray);
 }
 
 export default {
   
-  setup: setup
+  setup: setup,
+  checkTiles: checkTiles
   
 }
 

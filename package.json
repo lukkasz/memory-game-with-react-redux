@@ -7,7 +7,7 @@
   "scripts": {
     "test": "karma start",
     "start": "node ./devServer --host $IP --port $PORT",
-    "build": "node ./node_modules/webpack/bin/webpack.js && node server.js"
+    "build": "node ./node_modules/webpack/bin/webpack.js -w && node server.js"
   },
   "author": "lukkasz",
   "license": "ISC",

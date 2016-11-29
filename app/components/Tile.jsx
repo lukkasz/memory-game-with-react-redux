@@ -12,8 +12,15 @@ class Tile extends Component {
   
   handleClickTile(e) {
     e.preventDefault();
-    let {tile, showTile} = this.props; 
-    showTile(tile.id);
+    let {tile, index, selectTile, selectedTile1, selectedTile2} = this.props; 
+    if (!selectedTile1.tile || !selectedTile2.tile) {
+      selectTile(index, tile);  
+    } else {
+      console.log("From Tile Component: Ne radi click ")
+    }
+    
+    //console.log("From Tile Component -> Tile:", tile);
+    //console.log("From Tile Component -> Index:", index);
     
   }
   
@@ -35,9 +42,16 @@ class Tile extends Component {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    showTile: actions.showTile
+    selectTile: actions.selectTile
   }, dispatch)
 }
 
+function mapStateToProps(state){
+  return{
+    selectedTile1: state.memory.selectedTile1,
+    selectedTile2: state.memory.selectedTile2
+  }
+}
 
-export default connect(null,mapDispatchToProps)(Tile);
+
+export default connect(mapStateToProps,mapDispatchToProps)(Tile);
