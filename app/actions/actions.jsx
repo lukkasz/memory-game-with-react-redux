@@ -3,16 +3,16 @@ import * as types from './actionTypes';
 import memoryAPI from 'app/api/memoryAPI';
 
 export var startGame = () => {
-  var tiles = memoryAPI.setup()
+  var tiles = memoryAPI.getTiles()
   return {
     type: types.START_GAME,
     tiles
   }
 }
 
-export var selectTile = (index, tile) => {
+export var flipTile = (index, tile) => {
   return {
-    type: types.SELECT_TILE,
+    type: types.FLIP_TILE,
     index,
     tile
   }

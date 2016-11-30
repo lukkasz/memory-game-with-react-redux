@@ -1,12 +1,13 @@
 import _ from 'lodash';
 import uuid from 'uuid';
 
+var _tiles = [];
 
-function createImagesArray() {
+function generateTiles() {
   let images = [];
     
     for(let i=1; i < 9; i++) {
-      let img = {
+      /*let img = {
         key: i,
         id: uuid(),
         img: `assets/img/${i}.jpg`,
@@ -14,11 +15,20 @@ function createImagesArray() {
         src: 'assets/img/deck.jpg',
         selected: false,
         matched: false 
-      }
-      images.push(img);
+      }*/
+      images.push(`assets/img/${i}.jpg`);
     }
     
-    return _.concat(images, images);
+    images =  _.shuffle(_.concat(images, images));
+    
+    for(let i=0; i<images.length; i++) {
+      let _tile = {
+        image: images[i],
+        flipped: false,
+        matched: false
+      }
+      _tiles.push(_tile);
+    }
 }
 
 function checkTiles(tile1, tile2) {
@@ -32,18 +42,15 @@ function checkTiles(tile1, tile2) {
   
 }
 
-function setup() {
-    
-    let imagesArray = createImagesArray();
-    
-    //let tiles = createTilesWithId(imagesArray);
-    
-    return _.shuffle(imagesArray);
+function getTiles() {
+    generateTiles();
+    return _tiles;
 }
 
 export default {
   
-  setup: setup,
+  getTiles: getTiles,
+  generateTiles: generateTiles,
   checkTiles: checkTiles
   
 }

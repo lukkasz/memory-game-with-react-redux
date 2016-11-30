@@ -12,28 +12,31 @@ class Tile extends Component {
   
   handleClickTile(e) {
     e.preventDefault();
-    let {tile, index, selectTile, selectedTile1, selectedTile2} = this.props; 
-    if (!selectedTile1.tile || !selectedTile2.tile) {
-      selectTile(index, tile);  
-    } else {
-      console.log("From Tile Component: Ne radi click ")
-    }
+    let {tile, index, flipTile} = this.props;
     
-    //console.log("From Tile Component -> Tile:", tile);
-    //console.log("From Tile Component -> Index:", index);
+    flipTile(index, tile);
     
   }
   
   render(){
-    var {tile, disableClickOnTiles} = this.props;
-   // console.log("Prosp", this.props);
+    var {tile} = this.props;
+    var classTest = tile.flipped ? 'tile effect__click flipped' : 'tile effect__click'
+   
+    const tileBackStyle = {
+       backgroundImage: 'url(' + tile.image + ')',
+       backgroundSize: 'cover'
+    };
+    
     return (
-    <div className="col-xs-6 col-md-3" >
-      <a href="#" className="thumbnail">
-        <img className="img-responsive" src={tile.src} onClick={ disableClickOnTiles ? null :  this.handleClickTile}/>
-      </a>
-    </div>  
-  )
+      <div className={classTest} onClick={this.handleClickTile}>
+        <div className="tile__front">
+          <span className="tile__text">front</span>
+        </div>
+        <div className="tile__back" style={tileBackStyle}>
+          <span className="tile__text">back</span>
+        </div>
+      </div>
+    )
   }
   
   
@@ -42,16 +45,10 @@ class Tile extends Component {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    selectTile: actions.selectTile
+    flipTile: actions.flipTile
   }, dispatch)
 }
 
-function mapStateToProps(state){
-  return{
-    selectedTile1: state.memory.selectedTile1,
-    selectedTile2: state.memory.selectedTile2
-  }
-}
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Tile);
+export default connect(null,mapDispatchToProps)(Tile);

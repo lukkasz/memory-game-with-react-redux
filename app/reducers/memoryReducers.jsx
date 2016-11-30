@@ -8,16 +8,16 @@ const INITIAL_STATE = {
   selectedTile2: {index: null, tile: null},
 }
 
+
 export var memoryReducer = (state=INITIAL_STATE, action) => {
   switch(action.type) {
     case types.START_GAME:
-      //console.log("New tiles:", action.newTiles)
       return {
         ...state,
         tiles: action.tiles
       }
     
-    case types.SELECT_TILE:
+    case types.FLIP_TILE:
       //console.log("Index-ID:", state.tiles[action.index])
       
       const {index,tile} = action;
@@ -45,8 +45,7 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
           ...state.tiles.slice(0, index),
           {
             ...tile, 
-            src: tile.img,
-            selected: true
+            flipped: true
           }, 
          ...state.tiles.slice(index+1)
         ],
@@ -89,12 +88,16 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
         } 
         return tile;
       })
+      
       return {
+     
         ...state,
         tiles: [...newTiles2],
         selectedTile1: {...state.selectedTile1, index:null, tile: null },
         selectedTile2: {...state.selectedTile2, index:null, tile: null }
-      };
+      };  
+
+      
         
       
     default: 
