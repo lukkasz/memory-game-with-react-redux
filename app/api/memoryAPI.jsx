@@ -4,6 +4,7 @@ import uuid from 'uuid';
 var _tiles = [];
 
 function generateTiles() {
+  _tiles = [];
   let images = [];
     
     for(let i=1; i < 9; i++) {
@@ -20,6 +21,8 @@ function generateTiles() {
     }
     
     images =  _.shuffle(_.concat(images, images));
+    
+    console.log("Generate images called:", images);
     
     for(let i=0; i<images.length; i++) {
       let _tile = {

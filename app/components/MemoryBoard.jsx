@@ -16,6 +16,23 @@ class MemoryBoard extends Component {
     this.renderTiles = this.renderTiles.bind(this);
   }
 
+  componentDidUpdate() {
+    var {tiles, isWaiting, matchCheck, incrementTries} = this.props;
+    
+    var flippedTiles = _.filter(tiles, _.matches({'flipped': true, 'matched': false}));
+    console.log("Test tiles:", flippedTiles);
+    
+   if(flippedTiles.length >= 2) {
+      isWaiting(true);
+      incrementTries();
+      
+      setTimeout(()=>{
+        matchCheck();
+      }, 500);
+      // dispatch action matchCheck
+    }
+    
+  }
   renderTiles() {
     console.log("From MemoryBoard -> Tiles:", this.props.tiles)
     var {tiles} = this.props;
@@ -47,5 +64,13 @@ function mapStateToProps (state) {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    isWaiting: actions.isWaiting,
+    incrementTries: actions.incrementTries,
+    matchCheck: actions.matchCheck
+  }, dispatch)
+}
 
-export default connect(mapStateToProps)(MemoryBoard);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoryBoard);

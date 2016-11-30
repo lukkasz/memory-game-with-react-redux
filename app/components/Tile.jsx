@@ -12,10 +12,13 @@ class Tile extends Component {
   
   handleClickTile(e) {
     e.preventDefault();
+    
+    //console.log("Is Waiting from Tile:", this.props.isWaiting);
+    // Disable click if isWaiting state is True
+    if(this.props.isWaiting) return;
     let {tile, index, flipTile} = this.props;
     
     flipTile(index, tile);
-    
   }
   
   render(){
@@ -24,16 +27,16 @@ class Tile extends Component {
    
     const tileBackStyle = {
        backgroundImage: 'url(' + tile.image + ')',
-       backgroundSize: 'cover'
+       backgroundSize: '90% 90%',
+       backgroundPosition: 'center',
+       backgroundRepeat: 'no-repeat'
     };
     
     return (
       <div className={classTest} onClick={this.handleClickTile}>
         <div className="tile__front">
-          <span className="tile__text">front</span>
         </div>
         <div className="tile__back" style={tileBackStyle}>
-          <span className="tile__text">back</span>
         </div>
       </div>
     )
@@ -49,6 +52,12 @@ function mapDispatchToProps(dispatch){
   }, dispatch)
 }
 
+function mapStateToProps(state) {
+  return {
+    isWaiting: state.memory.isWaiting
+  }
+}
 
 
-export default connect(null,mapDispatchToProps)(Tile);
+
+export default connect(mapStateToProps,mapDispatchToProps)(Tile);

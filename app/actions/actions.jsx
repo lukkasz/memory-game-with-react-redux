@@ -18,18 +18,23 @@ export var flipTile = (index, tile) => {
   }
 }
 
-export var tilesMatched = (selectedTile1, selectedTile2) => {
+export var isWaiting = (isWaiting) => {
   return {
-    type: types.TILES_MATCHED,
-    selectedTile1,
-    selectedTile2
+    type: types.IS_WAITING,
+    isWaiting
   }
 }
 
-export var tilesNotMatched = (selectedTile1, selectedTile2) => {
+export var incrementTries = () => {
   return {
-    type: types.TILES_NOT_MATCHED,
-    selectedTile1,
-    selectedTile2
+    type: types.INCREMENT_TRIES
   }
 }
+
+export var matchCheck = () => {
+  return {
+    type: types.MATCH_CHECK,
+  }
+}
+
+

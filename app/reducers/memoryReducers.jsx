@@ -4,8 +4,8 @@ import memoryAPI from 'app/api/memoryAPI';
 // moram pratiti state tiles, selectedTiles
 const INITIAL_STATE = {
   tiles: [],
-  selectedTile1: {index: null, tile: null},
-  selectedTile2: {index: null, tile: null},
+  isWaiting: false,
+  numberOfTries: 0
 }
 
 
@@ -14,30 +14,17 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
     case types.START_GAME:
       return {
         ...state,
-        tiles: action.tiles
+        isWaiting: false,
+        numberOfTries: 0,
+        tiles: [...action.tiles]
       }
     
     case types.FLIP_TILE:
       //console.log("Index-ID:", state.tiles[action.index])
       
       const {index,tile} = action;
-      let newSelectedTile1 = state.selectedTile1.tile === null ? {index, tile} : state.selectedTile1;
-      let newSelectedTile2 = state.selectedTile1.tile && state.selectedTile2.tile === null ? {index, tile} : state.selectedTile2.tile;
-     
-      /*if (state.selectedTile1.tile === null) {
-        newSelectedTile1 = {
-          index,
-          tile
-        }
-      } else if (state.selectedTile1.tile && state.selectedTile2.tile === null) {
-        newSelectedTile2 = {
-          index,
-          tile
-        }
-      }*/
       
       var tile = state.tiles[index];
-      
      
       return {
         ...state,
@@ -49,56 +36,68 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
           }, 
          ...state.tiles.slice(index+1)
         ],
-        
-        selectedTile1: {...state.selectedTile1, ...newSelectedTile1},
-        selectedTile2: {...state.selectedTile2, ...newSelectedTile2}
-        
-        
-      
        }
-      
-    case types.TILES_MATCHED:
-      // set matched to True
-      console.log("Tiels matched")
-      let newTiles  = state.tiles.map((tile)=>{
-        if (tile.key === action.selectedTile1.tile.key) {
-          return { 
-            ...tile,
-            matched: true
-          }
-        } 
-        return tile;
-      })
+       
+    case types.IS_WAITING:
+      console.log("from IS_WAITING action:", action.isWaiting);
       return {
         ...state,
-        tiles: [...newTiles],
-        selectedTile1: {...state.selectedTile1, index:null, tile: null },
-        selectedTile2: {...state.selectedTile2, index:null, tile: null }
-      };
+        isWaiting: action.isWaiting
+      }
+    
+    case types.MATCH_CHECK:
+      let flippedTilesId = [];
+      let {tiles} = state; 
+      for (let id in tiles) {
+        if (tiles[id].flipped === true && tiles[id].matched === false ) {
+          console.log("From matched: ",tiles[id])
+          flippedTilesId.push(id);
+        }
+      }
       
-    case types.TILES_NOT_MATCHED:
-      // set src to deck
-      console.log("Tiels not matched");
-      let newTiles2  = state.tiles.map((tile)=>{
-        if (tile.key === action.selectedTile1.tile.key || tile.key === action.selectedTile2.tile.key ) {
-          return { 
-            ...tile,
-            src: action.selectedTile1.tile.deck
+      if(tiles[flippedTilesId[0]].image === tiles[flippedTilesId[1]].image) {
+        console.log("Slike su iste")
+        let newTiles = tiles.map((tile)=>{
+          if (tile.flipped == true && tile.matched == false) {
+            return {
+              ...tile,
+              matched: true 
+            }
+          } else {
+            return tile
           }
-        } 
-        return tile;
-      })
-      
+        })
+        console.log("From Match:", [...tiles, ...newTiles])
+        return {
+          ...state,
+          tiles: [...newTiles],
+          isWaiting: false
+        }
+      } else {
+        let newTiles = tiles.map((tile)=>{
+          if (tile.flipped == true && tile.matched == false) {
+            return {
+              ...tile,
+              flipped: false
+            }
+          } else {
+            return tile
+          }
+        })
+        console.log("From notMatch:", [...tiles, ...newTiles]);
+        return {
+          ...state,
+          tiles: [...newTiles],
+          isWaiting: false
+        }
+      }
+    
+    case types.INCREMENT_TRIES: 
       return {
-     
         ...state,
-        tiles: [...newTiles2],
-        selectedTile1: {...state.selectedTile1, index:null, tile: null },
-        selectedTile2: {...state.selectedTile2, index:null, tile: null }
-      };  
-
+        numberOfTries: state.numberOfTries + 1
+      }
       
-        
       
     default: 
       return state;
