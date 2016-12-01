@@ -43,5 +43,5 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx']
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'eval-source-map'
 };
