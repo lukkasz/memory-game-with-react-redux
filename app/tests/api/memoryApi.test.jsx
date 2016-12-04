@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import expect from 'expect';
-import TestUtils from 'react-addons-test-utils';
+import {renderComponent, expect} from 'app/tests/test_helper';
 
 import memoryAPI from 'app/api/memoryAPI';
 
 describe('memoryAPI', ()=>{
-  it('should exist', () => {
-    expect(memoryAPI).toExist();
-  })
+
   
-  describe('setup()', () => {
+  describe('getTiles()', () => {
+    
+    it('should return array', () => {
+      expect(memoryAPI.getTiles()).to.be.instanceof(Array);
+    });
+    
     it('should return array of 16 elements', () => {
-      expect(memoryAPI.setup().length).toBe(16);
-    })
-  })
+      expect(memoryAPI.getTiles().length).to.equal(16);
+    });
+    
+  });
 
 })

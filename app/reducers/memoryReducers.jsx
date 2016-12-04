@@ -20,7 +20,6 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
       }
     
     case types.FLIP_TILE:
-      //console.log("Index-ID:", state.tiles[action.index])
       
       const {index,tile} = action;
       
@@ -39,26 +38,21 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
        }
        
     case types.IS_WAITING:
-      console.log("from IS_WAITING action:", action.isWaiting);
+   
       return {
         ...state,
         isWaiting: action.isWaiting
       }
     
     case types.MATCH_CHECK:
-      let flippedTilesId = [];
+ 
       let {tiles} = state; 
-      for (let id in tiles) {
-        if (tiles[id].flipped === true && tiles[id].matched === false ) {
-          console.log("From matched: ",tiles[id])
-          flippedTilesId.push(id);
-        }
-      }
-      
-      if(tiles[flippedTilesId[0]].image === tiles[flippedTilesId[1]].image) {
-        console.log("Slike su iste")
+ 
+      if (action.flippedTiles[0].image === action.flippedTiles[1].image) {
+        
+        // Tiles are Equal
         let newTiles = tiles.map((tile)=>{
-          if (tile.flipped == true && tile.matched == false) {
+          if (tile.flipped === true && tile.matched === false) {
             return {
               ...tile,
               matched: true 
@@ -67,15 +61,17 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
             return tile
           }
         })
-        console.log("From Match:", [...tiles, ...newTiles])
+        
         return {
           ...state,
-          tiles: [...newTiles],
+          tiles: newTiles,
           isWaiting: false
         }
+        
       } else {
+        // Tiles are not equal
         let newTiles = tiles.map((tile)=>{
-          if (tile.flipped == true && tile.matched == false) {
+          if (tile.flipped === true && tile.matched === false) {
             return {
               ...tile,
               flipped: false
@@ -84,10 +80,10 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
             return tile
           }
         })
-        console.log("From notMatch:", [...tiles, ...newTiles]);
+        
         return {
           ...state,
-          tiles: [...newTiles],
+          tiles: newTiles,
           isWaiting: false
         }
       }

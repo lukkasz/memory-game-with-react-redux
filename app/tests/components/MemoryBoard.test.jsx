@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import expect from 'expect';
-import TestUtils from 'react-addons-test-utils';
+import {renderComponent,expect} from 'app/tests/test_helper';
 
 import MemoryBoard from 'app/components/MemoryBoard';
 
 describe('MemoryBoard', ()=>{
   it('should exist', () => {
-    expect(MemoryBoard).toExist();
+    const component = renderComponent(MemoryBoard);
+    //console.log("memory board",component);
+    
+    expect(component).to.have.class('gameboard');
+    //expect(component.find('Tile')).to.exist;
   })
 })

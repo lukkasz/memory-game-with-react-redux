@@ -13,8 +13,6 @@ class Tile extends Component {
   handleClickTile(e) {
     e.preventDefault();
     
-    //console.log("Is Waiting from Tile:", this.props.isWaiting);
-    // Disable click if isWaiting state is True
     if(this.props.isWaiting) return;
     let {tile, index, flipTile} = this.props;
     

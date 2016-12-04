@@ -1,14 +1,15 @@
-import expect from 'expect';
+import {renderComponent, expect} from 'app/tests/test_helper';
 
 import * as actions from 'app/actions/actions';
 import * as types from 'app/actions/actionTypes';
 
 describe('Actions', () => {
-  
+  /*
   it('should generate startGame action', () => {
     
     let action = {
-      type: types.START_GAME
+      type: types.START_GAME,
+      
     };
     
     let res = actions.startGame();
@@ -49,6 +50,6 @@ describe('Actions', () => {
     
     expect(res).toEqual(action);
   })
-  
+  */
   
 })

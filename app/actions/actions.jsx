@@ -31,9 +31,10 @@ export var incrementTries = () => {
   }
 }
 
-export var matchCheck = () => {
+export var matchCheck = (flippedTiles) => {
   return {
     type: types.MATCH_CHECK,
+    flippedTiles
   }
 }
 
