@@ -24,7 +24,6 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
       const {index,tile} = action;
       
       var tile = state.tiles[index];
-     
       return {
         ...state,
         tiles: [ 
@@ -37,11 +36,11 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
         ],
        }
        
-    case types.IS_WAITING:
+    case types.TOGGLE_IS_WAITING:
    
       return {
         ...state,
-        isWaiting: action.isWaiting
+        toggleIsWaiting: action.toggleIsWaiting
       }
     
     case types.MATCH_CHECK:

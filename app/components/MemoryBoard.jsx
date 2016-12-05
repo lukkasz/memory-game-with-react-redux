@@ -13,15 +13,15 @@ export class MemoryBoard extends Component {
   constructor(props) {
     super(props);
     this.renderTiles = this.renderTiles.bind(this);
+    this.handleClickTile = this.handleClickTile.bind(this);
   }
 
   componentDidUpdate() {
-    const {tiles, isWaiting, matchCheck, incrementTries} = this.props;
+    const {tiles, toggleIsWaiting, matchCheck, incrementTries} = this.props;
     const flippedTiles = _.filter(tiles, _.matches({'flipped': true, 'matched': false}));
     
-    
     if(flippedTiles.length >= 2) {
-      isWaiting(true);
+      toggleIsWaiting(true);
       incrementTries();
       
       setTimeout(()=>{
@@ -30,12 +30,21 @@ export class MemoryBoard extends Component {
     }
   }
   
+  handleClickTile(tile, index){
+    const {isWaiting, flipTile} = this.props;
+   
+    if(isWaiting) return;
+    
+    flipTile(index, tile);
+    
+  }
+  
   renderTiles() {
     const {tiles} = this.props;
 
     return tiles.map((tile, i)=>{
       return (
-        <Tile tile={tile} key={i} index={i}/>
+        <Tile tile={tile} key={i} index={i} onClick={this.handleClickTile}/>
       );
     });
   }
@@ -53,15 +62,17 @@ export class MemoryBoard extends Component {
 
 function mapStateToProps (state) {
   return {
-    tiles:state.memory.tiles
+    tiles:state.memory.tiles,
+    isWaiting: state.memory.isWaiting
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    isWaiting: actions.isWaiting,
+    toggleIsWaiting: actions.toggleIsWaiting,
     incrementTries: actions.incrementTries,
-    matchCheck: actions.matchCheck
+    matchCheck: actions.matchCheck,
+    flipTile: actions.flipTile
   }, dispatch);
 }
 
