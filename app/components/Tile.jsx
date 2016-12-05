@@ -7,11 +7,8 @@ const Tile = (props) =>{
   const {tile, index} = props;
   let classFlipped = tile.flipped ? 'tile effect__click flipped' : 'tile effect__click';
      
-  const tileBackStyle = {
+  const tileBackgroundImage = {
      backgroundImage: 'url(' + tile.image + ')',
-     backgroundSize: '90% 90%',
-     backgroundPosition: 'center',
-     backgroundRepeat: 'no-repeat'
   };
       
   return (
@@ -19,7 +16,7 @@ const Tile = (props) =>{
     <div className={classFlipped} onClick={()=>{props.onClick(tile, index)}}>
       <div className="tile__front">
       </div>
-      <div className="tile__back" style={tileBackStyle}>
+      <div className="tile__back" style={tileBackgroundImage}>
       </div>
     </div>
   );

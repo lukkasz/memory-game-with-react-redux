@@ -8,7 +8,7 @@ import _ from 'lodash';
 import Tile from 'app/components/Tile';
 import * as actions from 'app/actions/actions';
 
-export class MemoryBoard extends Component {
+export class TilesBoard extends Component {
   
   constructor(props) {
     super(props);
@@ -41,12 +41,16 @@ export class MemoryBoard extends Component {
   
   renderTiles() {
     const {tiles} = this.props;
-
-    return tiles.map((tile, i)=>{
-      return (
-        <Tile tile={tile} key={i} index={i} onClick={this.handleClickTile}/>
-      );
-    });
+    if (tiles) {
+      return tiles.map((tile, i)=>{
+        return (
+          <Tile tile={tile} key={i} index={i} onClick={this.handleClickTile}/>
+        );
+      });
+    }
+    return (
+      <div>No tiles</div>
+    )
   }
   
   render() {
@@ -62,8 +66,8 @@ export class MemoryBoard extends Component {
 
 function mapStateToProps (state) {
   return {
-    tiles:state.memory.tiles,
-    isWaiting: state.memory.isWaiting
+    tiles:state.tilesBoard.tiles,
+    isWaiting: state.tilesBoard.isWaiting
   };
 }
 
@@ -77,4 +81,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MemoryBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(TilesBoard);

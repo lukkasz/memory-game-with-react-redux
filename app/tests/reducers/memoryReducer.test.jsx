@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import React from 'react';
 const df = require('deep-freeze-strict');
 import * as types from 'app/actions/actionTypes';
-import * as reducers from 'app/reducers/memoryReducers';
+import * as reducers from 'app/reducers/tilesBoard';
 import memoryAPI from 'app/api/memoryAPI';
 
 var INITIAL_STATE = {
@@ -12,7 +12,7 @@ var INITIAL_STATE = {
 
 describe('Reducers', () => {
   
-  describe('memoryReducer', () => {
+  describe('tilesBoard reducer', () => {
     it('should initialize game', () => {
       var INITIAL_STATE = {
         tiles: [],
@@ -25,7 +25,7 @@ describe('Reducers', () => {
         tiles: memoryAPI.getTiles()
       }
       
-      var res = reducers.memoryReducer(df(INITIAL_STATE), df(action));
+      var res = reducers.tilesBoard(df(INITIAL_STATE), df(action));
       
       expect(res.tiles.length).to.equal(16);
     })

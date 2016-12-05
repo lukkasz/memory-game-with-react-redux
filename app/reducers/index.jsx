@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import {memoryReducer} from './memoryReducers';
+import {tilesBoard} from './tilesBoard';
 
 
 const rootReducer = combineReducers({
-     memory: memoryReducer
+     tilesBoard: tilesBoard
 });
 
 export default rootReducer;
