@@ -1,4 +1,4 @@
-import {renderComponent, expect} from 'app/tests/test_helper';
+import {expect} from 'chai';
 
 import memoryAPI from 'app/api/memoryAPI';
 

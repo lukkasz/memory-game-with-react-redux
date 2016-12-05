@@ -1,4 +1,5 @@
-import {expect} from 'app/tests/test_helper';
+import {expect} from 'chai';
+import React from 'react';
 const df = require('deep-freeze-strict');
 import * as types from 'app/actions/actionTypes';
 import * as reducers from 'app/reducers/memoryReducers';

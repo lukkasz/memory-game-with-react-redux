@@ -1,4 +1,4 @@
-import {renderComponent, expect} from 'app/tests/test_helper';
+import {expect} from 'chai';
 
 import * as actions from 'app/actions/actions';
 import * as types from 'app/actions/actionTypes';

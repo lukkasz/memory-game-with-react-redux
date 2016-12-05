@@ -8,7 +8,7 @@ import _ from 'lodash';
 import Tile from 'app/components/Tile';
 import * as actions from 'app/actions/actions';
 
-class MemoryBoard extends Component {
+export class MemoryBoard extends Component {
   
   constructor(props) {
     super(props);
