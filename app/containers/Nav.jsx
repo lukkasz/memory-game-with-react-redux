@@ -21,7 +21,7 @@ class Nav extends Component {
   
   render() {
     return(
-      <nav className="navbar navbar-default navbar-fixed-top">
+      <nav className="navbar navbar-default navbar-top">
   		  <div className="container">
   		  	<div className="navbar-header">
       			<p className="navbar-brand">Number of tries: <span className="label label-success">{this.props.numberOfTries}</span></p>

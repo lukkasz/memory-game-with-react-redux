@@ -1,6 +1,6 @@
 /node_modules
-/public/assets/js
-npm-debug.log
+#/public/assets/js
+debug.log
 
 # IntelliJ
 *.iml

@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
@@ -19,7 +21,12 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
   ],
   output: {
     path: path.resolve(__dirname, "public/assets/js/"),
@@ -47,5 +54,5 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx']
   },
-  devtool: 'eval-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'eval-source-map'
 };
