@@ -1,5 +1,6 @@
 ## Memory Game made with React and Redux
  
+ [Live DEMO](https://memory-react-redux.herokuapp.com/)
  
  ### Stuff used to make this:
  
