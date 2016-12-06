@@ -12,7 +12,10 @@
   
   &__back {
     -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+            background-size: 90% 90%;
+            background-position: center;
+            background-repeat: no-repeat;
   }
   
   &__front,

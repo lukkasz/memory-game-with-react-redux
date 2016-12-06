@@ -1,7 +1,5 @@
-import * as types from 'app/actions/actionTypes';
-import memoryAPI from 'app/api/memoryAPI';
+import * as types from 'app/constants/ActionTypes';
 
-// moram pratiti state tiles, selectedTiles
 const INITIAL_STATE = {
   tiles: [],
   isWaiting: false,
@@ -9,23 +7,20 @@ const INITIAL_STATE = {
 }
 
 
-export var memoryReducer = (state=INITIAL_STATE, action) => {
+export function memoryReducer (state=INITIAL_STATE, action) {
   switch(action.type) {
     case types.START_GAME:
+      
       return {
         ...state,
         isWaiting: false,
         numberOfTries: 0,
         tiles: [...action.tiles]
-      }
+      };
     
     case types.FLIP_TILE:
-      //console.log("Index-ID:", state.tiles[action.index])
+      const {index, tile} = action;
       
-      const {index,tile} = action;
-      
-      var tile = state.tiles[index];
-     
       return {
         ...state,
         tiles: [ 
@@ -36,46 +31,40 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
           }, 
          ...state.tiles.slice(index+1)
         ],
-       }
+       };
        
-    case types.IS_WAITING:
-      console.log("from IS_WAITING action:", action.isWaiting);
+    case types.TOGGLE_IS_WAITING:
       return {
         ...state,
-        isWaiting: action.isWaiting
-      }
+        toggleIsWaiting: action.toggleIsWaiting
+      };
     
     case types.MATCH_CHECK:
-      let flippedTilesId = [];
-      let {tiles} = state; 
-      for (let id in tiles) {
-        if (tiles[id].flipped === true && tiles[id].matched === false ) {
-          console.log("From matched: ",tiles[id])
-          flippedTilesId.push(id);
-        }
-      }
-      
-      if(tiles[flippedTilesId[0]].image === tiles[flippedTilesId[1]].image) {
-        console.log("Slike su iste")
+      const {tiles} = state; 
+ 
+      if (action.flippedTiles[0].image === action.flippedTiles[1].image) {
+        // Tiles are Equal
         let newTiles = tiles.map((tile)=>{
-          if (tile.flipped == true && tile.matched == false) {
+          if (tile.flipped === true && tile.matched === false) {
             return {
               ...tile,
               matched: true 
-            }
+            };
           } else {
-            return tile
+            return tile;
           }
-        })
-        console.log("From Match:", [...tiles, ...newTiles])
+        });
+        
         return {
           ...state,
-          tiles: [...newTiles],
+          tiles: newTiles,
           isWaiting: false
-        }
+        };
+        
       } else {
+        // Tiles are not equal
         let newTiles = tiles.map((tile)=>{
-          if (tile.flipped == true && tile.matched == false) {
+          if (tile.flipped === true && tile.matched === false) {
             return {
               ...tile,
               flipped: false
@@ -84,10 +73,10 @@ export var memoryReducer = (state=INITIAL_STATE, action) => {
             return tile
           }
         })
-        console.log("From notMatch:", [...tiles, ...newTiles]);
+        
         return {
           ...state,
-          tiles: [...newTiles],
+          tiles: newTiles,
           isWaiting: false
         }
       }

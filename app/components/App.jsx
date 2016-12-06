@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Nav from 'app/components/Nav';
-import MemoryBoard from 'app/components/MemoryBoard';
+import Nav from 'app/containers/Nav';
+import TilesBoard from 'app/containers/TilesBoard';
 
 export default function App() {
 	return (
 	  <section>
 	  	<Nav />
-	  	<MemoryBoard />
+	  	<TilesBoard />
     </section>
 	);
 }
