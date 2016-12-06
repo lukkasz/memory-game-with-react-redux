@@ -44,7 +44,7 @@ class TilesBoard extends Component {
     if (tiles) {
       return tiles.map((tile, i)=>{
         return (
-          <Tile tile={tile} key={i} index={i} onClick={this.handleClickTile}/>
+          <Tile tile={tile} key={i} index={i} onClickTile={this.handleClickTile}/>
         );
       });
     }
@@ -57,7 +57,13 @@ class TilesBoard extends Component {
     return (
       <div className="container gameboard">
         <div className="row">
-         {this.renderTiles()}
+         {
+          this.props.tiles.map((tile, i)=>{
+              return (
+                <Tile tile={tile} key={i} index={i} onClickTile={this.handleClickTile}/>
+              );
+          })
+         }
         </div>
       </div>
     );
