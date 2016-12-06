@@ -7,7 +7,7 @@
   "scripts": {
     "test": "NODE_PATH=./ mocha --compilers js:babel-core/register --require ./app/tests/setup.js  'app/tests/**/*.test.jsx'",
     "start": "node ./devServer --host $IP --port $PORT",
-    "build": "node ./node_modules/webpack/bin/webpack.js -w && node server.js"
+    "build": "node ./node_modules/webpack/bin/webpack.js && node server.js"
   },
   "author": "lukkasz",
   "license": "ISC",

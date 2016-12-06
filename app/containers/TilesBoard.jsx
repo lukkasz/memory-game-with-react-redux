@@ -6,9 +6,9 @@ import {bindActionCreators} from 'redux';
 import _ from 'lodash';
 
 import Tile from 'app/components/Tile';
-import * as actions from 'app/actions/actions';
+import * as actions from 'app/actions';
 
-export class TilesBoard extends Component {
+class TilesBoard extends Component {
   
   constructor(props) {
     super(props);
@@ -66,8 +66,8 @@ export class TilesBoard extends Component {
 
 function mapStateToProps (state) {
   return {
-    tiles:state.tilesBoard.tiles,
-    isWaiting: state.tilesBoard.isWaiting
+    tiles:state.memory.tiles,
+    isWaiting: state.memory.isWaiting
   };
 }
 

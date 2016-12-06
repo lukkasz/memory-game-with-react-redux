@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import * as actions from 'app/actions/actions';
+import * as actions from 'app/actions';
 
 class Nav extends Component {
   
@@ -40,7 +40,7 @@ class Nav extends Component {
 
 function mapStateToProps(state) {
   return {
-    //numberOfTries: state.tilesBoard.numberOfTries
+    numberOfTries: state.memory.numberOfTries
   }
 }
 

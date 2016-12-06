@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import * as actions from 'app/actions/actions';
+import * as actions from 'app/actions';
 
 const Tile = (props) =>{
 

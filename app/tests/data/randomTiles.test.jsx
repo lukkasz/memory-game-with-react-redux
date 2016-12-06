@@ -1,18 +1,18 @@
 import {expect} from 'chai';
 
-import memoryAPI from 'app/api/memoryAPI';
+import randomTiles from 'app/data/randomTiles';
 
-describe('memoryAPI', ()=>{
+describe('randomTiles', ()=>{
 
   
   describe('getTiles()', () => {
     
     it('should return array', () => {
-      expect(memoryAPI.getTiles()).to.be.instanceof(Array);
+      expect(randomTiles.getTiles()).to.be.instanceof(Array);
     });
     
     it('should return array of 16 elements', () => {
-      expect(memoryAPI.getTiles().length).to.equal(16);
+      expect(randomTiles.getTiles().length).to.equal(16);
     });
     
   });

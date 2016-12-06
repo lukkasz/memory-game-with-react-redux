@@ -1,7 +1,5 @@
-import * as types from 'app/actions/actionTypes';
-import memoryAPI from 'app/api/memoryAPI';
+import * as types from 'app/constants/ActionTypes';
 
-// moram pratiti state tiles, selectedTiles
 const INITIAL_STATE = {
   tiles: [],
   isWaiting: false,
@@ -9,7 +7,7 @@ const INITIAL_STATE = {
 }
 
 
-export function tilesBoard (state=INITIAL_STATE, action) {
+export function memoryReducer (state=INITIAL_STATE, action) {
   switch(action.type) {
     case types.START_GAME:
       
@@ -36,7 +34,6 @@ export function tilesBoard (state=INITIAL_STATE, action) {
        };
        
     case types.TOGGLE_IS_WAITING:
-      console.log("State from TOGGLE_IS_WAITING actions:", state);
       return {
         ...state,
         toggleIsWaiting: action.toggleIsWaiting

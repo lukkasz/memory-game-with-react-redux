@@ -5,8 +5,8 @@ import {shallow, mount} from 'enzyme';
 
 import configureStore from 'app/store/configureStore'; 
 import App from 'app/components/App';
-import TilesBoard from 'app/components/TilesBoard';
-import Nav from 'app/components/Nav';
+import TilesBoard from 'app/containers/TilesBoard';
+import Nav from 'app/containers/Nav';
  
 
 

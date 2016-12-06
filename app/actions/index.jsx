@@ -1,8 +1,8 @@
-import * as types from './actionTypes';
-import memoryAPI from 'app/api/memoryAPI';
+import * as types from 'app/constants/ActionTypes';
+import randomTiles from 'app/data/randomTiles';
 
 export function startGame () {
-  var tiles = memoryAPI.getTiles()
+  var tiles = randomTiles.getTiles()
   return {
     type: types.START_GAME,
     tiles

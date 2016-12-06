@@ -2,12 +2,12 @@ import React from 'react';
 import {expect} from 'chai';
 import {Provider} from 'react-redux';
 import {shallow, mount} from 'enzyme';
-import TilesBoard  from 'app/components/TilesBoard'
+import App from 'app/components/App';
+import TilesBoard  from 'app/containers/TilesBoard';
 import Tile from 'app/components/Tile';
 import configureStore from 'app/store/configureStore'; 
-import App from 'app/components/App';
 // Change name :)
-const tilesBoard = {
+const tilesMock = {
   tiles: [
     {
       flipped: false,
@@ -28,7 +28,7 @@ describe('TilesBoard', ()=>{
   let wrapper;
 
   beforeEach(()=>{
-    store = configureStore({tilesBoard});
+    store = configureStore({memory:{...tilesMock}});
     wrapper = mount(
       <Provider store={store} >
         <TilesBoard />
@@ -41,7 +41,7 @@ describe('TilesBoard', ()=>{
   });
   
   it('should render one Tile for each tile item', () => {
-    expect(wrapper.find(Tile).length).to.equal(tilesBoard.tiles.length);
+    expect(wrapper.find(Tile).length).to.equal(tilesMock.tiles.length);
   });
   
 });

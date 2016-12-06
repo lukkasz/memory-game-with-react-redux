@@ -8,10 +8,11 @@ module.exports = {
   ],
   externals: {
     jquery: 'jQuery',
-    'cheerio': 'window',
-    'react-dom': true,
-    'react-dom/server': true,
-    'react-addons-test-utils': true
+    jsdom: 'window',
+    cheerio: 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+    
   },
   plugins: [
     new webpack.ProvidePlugin({
