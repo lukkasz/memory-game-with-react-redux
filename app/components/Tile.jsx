@@ -8,7 +8,7 @@ const Tile = (props) =>{
   let classFlipped = tile.flipped ? 'tile effect__click flipped' : 'tile effect__click';
      
   const tileBackgroundImage = {
-     backgroundImage: 'url(' + tile.image + ')',
+     backgroundImage: 'url(' + tile.image + ')'
   };
       
   return (

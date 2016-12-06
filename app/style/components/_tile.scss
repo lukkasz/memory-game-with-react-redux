@@ -5,7 +5,8 @@
   width: 25%;
   text-align: center;
   
-   &__front {
+  &__front {
+    cursor: pointer;
     background-image: url('/assets/img/deck.jpg');
     background-size: cover;
   }

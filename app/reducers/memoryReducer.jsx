@@ -36,7 +36,7 @@ export function memoryReducer (state=INITIAL_STATE, action) {
     case types.TOGGLE_IS_WAITING:
       return {
         ...state,
-        toggleIsWaiting: action.toggleIsWaiting
+        isWaiting: action.isWaiting
       };
     
     case types.MATCH_CHECK:

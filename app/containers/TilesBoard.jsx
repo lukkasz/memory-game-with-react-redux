@@ -26,13 +26,13 @@ class TilesBoard extends Component {
       
       setTimeout(()=>{
         matchCheck(flippedTiles);
-      }, 500);
+      }, 1000);
     }
   }
   
   handleClickTile(tile, index){
-    const {isWaiting, flipTile} = this.props;
-   
+    const {flipTile, isWaiting} = this.props;
+
     if(isWaiting) return;
     
     flipTile(index, tile);
