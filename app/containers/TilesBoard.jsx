@@ -16,22 +16,32 @@ class TilesBoard extends Component {
     this.handleClickTile = this.handleClickTile.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(){
     const {tiles, toggleIsWaiting, matchCheck, incrementTries} = this.props;
     const flippedTiles = _.filter(tiles, _.matches({'flipped': true, 'matched': false}));
     
-    if(flippedTiles.length >= 2) {
+   
+   if(flippedTiles.length >= 2) {
       toggleIsWaiting(true);
-      incrementTries();
+
+      // try to fix componentDidUpdate called twice
+      // becaue actions are wrapped inside if statement
+      if(this.props.isWaiting) {
+        incrementTries();  
+        setTimeout(()=>{
+          matchCheck(flippedTiles);
+        }, 500);
+      }
       
-      setTimeout(()=>{
-        matchCheck(flippedTiles);
-      }, 1000);
+
+      
+      
     }
   }
   
   handleClickTile(tile, index){
     const {flipTile, isWaiting} = this.props;
+    
 
     if(isWaiting) return;
     
@@ -41,29 +51,23 @@ class TilesBoard extends Component {
   
   renderTiles() {
     const {tiles} = this.props;
-    if (tiles) {
+    //if (tiles) {
       return tiles.map((tile, i)=>{
         return (
           <Tile tile={tile} key={i} index={i} onClickTile={this.handleClickTile}/>
         );
       });
-    }
+    /*}
     return (
       <div>No tiles</div>
-    )
+    )*/
   }
   
   render() {
     return (
       <div className="container gameboard">
         <div className="row">
-         {
-          this.props.tiles.map((tile, i)=>{
-              return (
-                <Tile tile={tile} key={i} index={i} onClickTile={this.handleClickTile}/>
-              );
-          })
-         }
+         {this.renderTiles()}
         </div>
       </div>
     );

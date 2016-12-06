@@ -84,7 +84,7 @@ export function memoryReducer (state=INITIAL_STATE, action) {
     case types.INCREMENT_TRIES: 
       return {
         ...state,
-        numberOfTries: state.numberOfTries + 1
+        numberOfTries: state.numberOfTries+1 
       }
       
       
