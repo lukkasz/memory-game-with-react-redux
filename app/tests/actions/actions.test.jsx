@@ -1,56 +1,101 @@
 import {expect} from 'chai';
-
-import * as types from 'app/constants/ActionTypes';
-import * as actions from 'app/actions';
+import { 
+  START_GAME, 
+  FLIP_TILE,
+  TOGGLE_IS_WAITING,
+  INCREMENT_TRIES,
+  MATCH_CHECK
+} from 'app/constants/ActionTypes';
+import { 
+  startGame, 
+  flipTile,
+  toggleIsWaiting,
+  incrementTries,
+  matchCheck
+} from 'app/actions';
 
 
 describe('Actions', () => {
-  /*
-  it('should generate startGame action', () => {
+  describe('startGame()', () => {
+    let action;
+    beforeEach(()=>{
+       action = startGame();
+    });
     
-    let action = {
-      type: types.START_GAME,
-      
-    };
+    it('has the correct type', () => {
+      expect(action.type).to.equal(START_GAME);
+    });
     
-    let res = actions.startGame();
-    
-    expect(res).toEqual(action);
-    
-  });
-  
-  it('should generate showTile action', () => {
-    
-    let action = {
-      type: types.SHOW_TILE,
-      id: '123'
-    };
-    
-    let res = actions.showTile(action.id);
-    
-    expect(res).toEqual(action);
+    it('has the correct payload', () => {
+      expect(action.tiles).to.be.instanceof(Array);
+      expect(action.tiles).to.have.length.above(0);
+    });
     
   });
   
-  it('should generate checkIfMatch action', () => {
-    let action = {
-      type: types.CHECK_IF_MATCH,
-      selectedTiles: [
-        {
-          id: 'abc123',
-          key: 1,
-        },
-        {
-          id:'abc124',
-          key: 1
-        }
-      ]
-    }
+  describe('flipTile()', ()=>{
+    let action;
+    beforeEach(()=>{
+      action = flipTile(0,'tile');
+    });
     
-    let res = actions.checkIfMatch(action.selectedTiles);
+    it('has the correct type', () => {
+      expect(action.type).to.equal(FLIP_TILE);
+    });
     
-    expect(res).toEqual(action);
-  })
-  */
+    it('has the correct payload', () => {
+      expect(action.index).to.equal(0);
+      expect(action.tile).to.equal('tile');
+    });
+    
+  });
   
-})
+  describe('toggleIsWaiting()', ()=>{
+    let action;
+    beforeEach(()=>{
+      action = toggleIsWaiting(true);
+    });
+    
+    it('has the correct type', () => {
+      expect(action.type).to.equal(TOGGLE_IS_WAITING);
+    });
+    
+    it('has the correct payload', () => {
+      expect(action.isWaiting).to.be.true;
+    });
+  });
+  
+  describe('incrementTries()', ()=>{
+    let action;
+    beforeEach(()=>{
+      action = incrementTries();
+    });
+    
+    it('has the correct type', () => {
+      expect(action.type).to.equal(INCREMENT_TRIES);
+    });
+    
+    it('has no payload', () => {
+      expect(action.payload).to.not.exist;
+    });
+  });
+  
+  
+  describe('matchCheck()', () => {
+    let action;
+    beforeEach(()=>{
+      let flippedTiles = [{id:1, name:'Tile1'}, {id:2, name:'Tile2'}]
+      action = matchCheck(flippedTiles);
+    });
+    
+    it('has the correct type', () => {
+      expect(action.type).to.equal(MATCH_CHECK);
+    });
+    
+    it('has the correct payload', () => {
+      expect(action.flippedTiles).to.be.instanceof(Array);
+      expect(action.flippedTiles).to.have.lengthOf(2);
+    });
+  });
+  
+});

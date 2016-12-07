@@ -8,12 +8,12 @@ import _ from 'lodash';
 import Tile from 'app/components/Tile';
 import * as actions from 'app/actions';
 
-class TilesBoard extends Component {
+export class TilesBoard extends Component {
   
   constructor(props) {
     super(props);
     this.renderTiles = this.renderTiles.bind(this);
-    this.handleClickTile = this.handleClickTile.bind(this);
+    this.onHandleClickTile = this.onHandleClickTile.bind(this);
   }
 
   componentDidUpdate(){
@@ -39,7 +39,7 @@ class TilesBoard extends Component {
     }
   }
   
-  handleClickTile(tile, index){
+  onHandleClickTile(tile, index){
     const {flipTile, isWaiting} = this.props;
     
 
@@ -54,7 +54,7 @@ class TilesBoard extends Component {
     //if (tiles) {
       return tiles.map((tile, i)=>{
         return (
-          <Tile tile={tile} key={i} index={i} onClickTile={this.handleClickTile}/>
+          <Tile tile={tile} key={i} index={i} onClickTile={this.onHandleClickTile}/>
         );
       });
     /*}
